@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
 // 1. It has to have the same API as <Route /> - Have the same props
-// 2. IT renders a <Route /> and passes all the props through to it
+// 2. It renders a <Route /> and passes all the props through to it
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
     return (

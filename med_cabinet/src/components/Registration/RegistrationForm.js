@@ -66,13 +66,13 @@ function RegistrationForm ({ errors, touched }) {
                     <p className='error'>{errors.username}</p>
                 )}
 
-                <p>Enter a valid zip code</p>
+                {/* <p>Enter a valid zip code</p>
                 <Field 
                     className = 'zip'
                     name= 'zip'
                     type = 'number'
                     placeholder= 'Zip Code'
-                />
+                /> */}
 
                 {touched.username && errors.username && (
                     <p style={{color: 'orange'}} className = 'error'>{errors.username}</p>
@@ -83,7 +83,7 @@ function RegistrationForm ({ errors, touched }) {
                 </p>
                 
                 <div>
-                    <button className='register-button'type='submit' >Register</button>
+                    <button className='register-button' type='submit' >Register</button>
                 </div>
         </Form>
             </div>
@@ -94,24 +94,24 @@ function RegistrationForm ({ errors, touched }) {
 const FormikRegisterationForm = withFormik({
     mapPropsToValues({ name, username, password, email }) {
         return {
-                name: name || '',
-                username: username || '',
+                email: email || '',
                 password: password || '',
-                email: email || ''
+                username: username || '',
+                name: name || ''
             }
         },
 
         validationSchema: Yup.object().shape({
-            name: Yup.string()
-                .required('Please enter your name'),
-            username: Yup.string()
-                .required('Please enter your username'),
+            email: Yup.string()
+                .email('Email not valid')
+                .required('Please enter your email'),
             password: Yup.string()
                 // .min(6, 'Password must be 6 characters or longer')
                 .required('Please enter your password'),
-            email: Yup.string()
-                .email('Email not valid')
-                .required('Please enter your email')
+            username: Yup.string()
+                .required('Please enter your username'),
+            name: Yup.string()
+                .required('Please enter your name')
         }),
 
         handleSubmit(values, { resetForm, setSubmitting, setStatus }){
